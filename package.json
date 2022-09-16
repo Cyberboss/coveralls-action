@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "test": "mocha -r ts-node/register src/**/*.spec.ts",
-    "release": "git checkout releases && git merge master && npm run build && npm prune --production && git commit -a -m 'prepared production release'"
+    "package": "ncc build --source-map --license licenses.txt",
+    "release": "git checkout -b releases && npm run build && npm prune --production && git commit -a 'prepared production release'"
   },
   "author": "Nick Merwin (nick@coveralls.io)",
   "license": "MIT",
@@ -17,6 +18,7 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "^13.9.2",
     "@types/request": "^2.48.4",
+    "@vercel/ncc": "^0.24.1",
     "chai": "^4.2.0",
     "dedent": "^0.7.0",
     "mocha": "^6.2.0",
@@ -28,6 +30,7 @@
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
+    "@actions/glob": "^0.1.0",
     "@actions/exec": "^1.0.4",
     "coveralls": "^3.1.1",
     "request": "^2.88.0"
